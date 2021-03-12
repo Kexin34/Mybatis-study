@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <!--引用外部配置文件-->
+    <properties resource="db.properties"></properties>
+
+    <!-- 配置 -->
+    <settings>
+        <!--标准的日志工厂实现-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--可以给实体类起别名-->
+    <typeAliases>
+        <typeAlias type="com.kexin.pojo.Student" alias="Student"/>
+        <typeAlias type="com.kexin.pojo.Teacher" alias="Teacher"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="StudentMapper.xml"/>
+        <mapper resource="TeacherMapper.xml"/>
+<!--        <mapper resource="com/kexin/dao/*Mapper.xml"/>-->
+    </mappers>
+</configuration>
